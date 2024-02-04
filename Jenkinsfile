@@ -73,6 +73,15 @@ pipeline{
                }
             }
         }
+        stage('Push Artifacts : JFrog'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   
+                   JFrogPush()
+               }
+            }
+        }
         stage('Docker Image Build'){
          when { expression {  params.action == 'create' } }
             steps{
